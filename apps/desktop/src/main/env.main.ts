@@ -43,9 +43,8 @@ export const env = createEnv({
 		STREAMS_URL: process.env.STREAMS_URL,
 	},
 	emptyStringAsUndefined: true,
-	// Only allow skipping validation in development (never in production)
-	skipValidation:
-		process.env.NODE_ENV === "development" && !!process.env.SKIP_ENV_VALIDATION,
+	// Skip validation for airgap/offline deployments
+	skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 
 	// Main process runs in trusted Node.js environment
 	isServer: true,

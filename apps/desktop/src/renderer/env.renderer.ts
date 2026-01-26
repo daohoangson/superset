@@ -48,9 +48,8 @@ const rawEnv = {
 	SENTRY_DSN_DESKTOP: import.meta.env.SENTRY_DSN_DESKTOP as string | undefined,
 };
 
-// Only allow skipping validation in development (never in production)
-const SKIP_ENV_VALIDATION =
-	process.env.NODE_ENV === "development" && !!process.env.SKIP_ENV_VALIDATION;
+// Skip validation flag (for airgap/offline deployments)
+const SKIP_ENV_VALIDATION = !!process.env.SKIP_ENV_VALIDATION;
 
 export const env = {
 	...(SKIP_ENV_VALIDATION
